@@ -30,6 +30,9 @@ defmodule Exmemcached.Server do
             process_get(sock, key)
           ["set", key, value] ->
             process_set(sock, key, value)
+          _ ->
+            IO.puts "Unknown command: #{line}"
+            :gen_tcp.send(sock, "UNKNOWN COMMAND\r\n")
         end
         process_command(sock)
       {:error, :closed} ->
