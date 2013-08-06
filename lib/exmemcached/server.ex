@@ -37,7 +37,7 @@ defmodule Exmemcached.Server do
         process_command(sock)
       {:error, :closed} ->
         IO.puts "closed"
-      Error ->
+      _ ->
         IO.puts "Error"
     end
   end
